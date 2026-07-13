@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レインボーの会｜ボランティア防犯活動</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAF7EF;
+    --paper: #FFFFFF;
+    --ink: #232E3B;
+    --ink-soft: #5C6773;
+    --ink-faint: #9AA3AC;
+    --line: #E5DFD0;
+    --indigo: #2B4570;
+    --indigo-soft: #DCE3ED;
+    --amber: #C98A2B;
+    --amber-soft: #F3E4C8;
+    --terracotta: #B85340;
+    --terracotta-soft: #F1DCD4;
+    --teal: #2F7566;
+    --teal-soft: #DCEAE5;
+    --stripe: linear-gradient(90deg, #3D6BFF 0%, #17D3AE 25%, #FFCB3D 50%, #FF6E4E 75%, #B463F7 100%);
+    --icon-gradient: conic-gradient(from 200deg, #3D6BFF, #17D3AE, #FFCB3D, #FF6E4E, #B463F7, #3D6BFF);
+    --radius: 4px;
+    --shadow: 0 1px 2px rgba(35,46,59,0.06), 0 8px 24px rgba(35,46,59,0.05);
+  }
+
+  html[data-theme="dark"]{
+    --bg: #14181F;
+    --paper: #1C212A;
+    --ink: #EDF0F4;
+    --ink-soft: #AAB3BF;
+    --ink-faint: #6E7885;
+    --line: #2C3340;
+    --indigo: #7C9CDB;
+    --indigo-soft: #263149;
+    --amber: #E4B45C;
+    --amber-soft: #3A2E17;
+    --terracotta: #E48870;
+    --terracotta-soft: #3A2019;
+    --teal: #6FC4AE;
+    --teal-soft: #16332B;
+    --stripe: linear-gradient(90deg, #5B87FF 0%, #2CE7BE 25%, #FFD65C 50%, #FF8B6B 75%, #C583FF 100%);
+    --icon-gradient: conic-gradient(from 200deg, #5B87FF, #2CE7BE, #FFD65C, #FF8B6B, #C583FF, #5B87FF);
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans JP', sans-serif;
+    font-weight:400;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .35s ease, color .35s ease;
+  }
+  h1,h2,h3,h4{
+    font-family:'Zen Maru Gothic', sans-serif;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .stripe{
+    height:5px;
+    background:var(--stripe);
+  }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .eyebrow{
+    font-family:'Zen Maru Gothic', sans-serif;
+    font-size:13px;
+    letter-spacing:0.18em;
+    color:var(--indigo);
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:2px;
+    background:var(--indigo);
+    display:inline-block;
+  }
+
+  /* ===== Header ===== */
+  header, .tcard, .hero-badge, .legend, .partner, .navlinks, footer{
+    transition:background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,247,239,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  html[data-theme="dark"] header{
+    background:rgba(20,24,31,0.86);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 28px;
+    max-width:1080px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Zen Maru Gothic', sans-serif;
+    font-weight:700;
+    font-size:18px;
+  }
+  .brand-mark{
+    width:26px;height:26px;border-radius:50%;
+    background:var(--icon-gradient);
+    flex-shrink:0;
+  }
+  .navlinks{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+  .navlinks a{text-decoration:none;transition:color .2s;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--indigo);}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .navtoggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
+
+  .theme-toggle{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .theme-btn{
+    position:relative;
+    width:52px;
+    height:28px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    cursor:pointer;
+    padding:0;
+    flex-shrink:0;
+    transition:background-color .35s ease, border-color .35s ease;
+  }
+  .theme-btn:focus-visible{outline:2px solid var(--indigo);outline-offset:2px;}
+  .theme-btn .knob{
+    position:absolute;
+    top:2px;
+    left:2px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:var(--stripe);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:left .3s ease;
+  }
+  html[data-theme="dark"] .theme-btn .knob{left:28px;}
+  .theme-btn .knob svg{width:13px;height:13px;}
+  .theme-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    font-weight:600;
+    letter-spacing:0.02em;
+    min-width:34px;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:end;
+  }
+  .hero h1{
+    font-size:clamp(40px, 6vw, 64px);
+    line-height:1.18;
+    font-weight:900;
+    margin:18px 0 22px;
+    letter-spacing:0.01em;
+  }
+  .hero h1 .accent{
+    background:var(--stripe);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lead{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin:0;
+  }
+  .hero-badge{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px 26px;
+    box-shadow:var(--shadow);
+  }
+  .hero-badge .num{
+    font-family:'Zen Maru Gothic', sans-serif;
+    font-size:34px;
+    font-weight:900;
+    color:var(--indigo);
+    line-height:1.1;
+  }
+  .hero-badge .cap{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+  .hero-badge .div{
+    height:1px;background:var(--line);margin:18px 0;
+  }
+  .hero-badge .row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13.5px;
+    padding:6px 0;
+    color:var(--ink-soft);
+  }
+  .hero-badge .row b{color:var(--ink);font-weight:600;}
+  .hero-badge .row.status-row{align-items:center;}
+  .hero-badge .row.status-row span{display:flex;align-items:center;gap:8px;}
+  .hero-badge .row.status-row b{color:var(--teal);font-weight:700;}
+  .pulse-dot{
+    position:relative;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--teal);
+    flex-shrink:0;
+  }
+  .pulse-dot::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:var(--teal);
+    animation:pulse 2.2s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{transform:scale(1);opacity:0.6;}
+    100%{transform:scale(2.6);opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pulse-dot::after{animation:none;}
+  }
+
+  /* ===== Section shell ===== */
+  section{padding:72px 0;}
+  section.tint{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:clamp(26px,3.4vw,34px);
+    font-weight:700;
+    margin-top:10px;
+  }
+  .section-head p{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    max-width:38ch;
+    margin:10px 0 0;
+  }
+
+  /* ===== About ===== */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:48px;
+  }
+  .about-grid p{color:var(--ink-soft);font-size:15.5px;}
+  .about-grid p + p{margin-top:14px;}
+  .legend{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .legend h3{font-size:13px;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600;margin-bottom:10px;font-family:'Noto Sans JP',sans-serif;}
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+  }
+  .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .dot.watch{background:var(--indigo);}
+  .dot.fraud{background:var(--amber);}
+  .dot.event{background:var(--terracotta);}
+  .dot.award{background:var(--teal);}
+
+  /* ===== Timeline ===== */
+  .timeline-year{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:32px;
+    margin-bottom:6px;
+  }
+  .year-label{
+    position:sticky;
+    top:78px;
+    align-self:start;
+    font-family:'Zen Maru Gothic', sans-serif;
+    font-size:30px;
+    font-weight:900;
+    color:var(--indigo);
+    padding-top:6px;
+  }
+  .year-label span{
+    display:block;
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink-faint);
+    letter-spacing:0.08em;
+    margin-top:2px;
+  }
+  .year-items{
+    border-left:2px solid var(--line);
+    padding-left:28px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    padding-bottom:38px;
+    position:relative;
+  }
+  .tcard{
+    position:relative;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:4px solid var(--ink);
+    border-radius:var(--radius);
+    padding:18px 22px;
+    box-shadow:var(--shadow);
+  }
+  .tcard::before{
+    content:"";
+    position:absolute;
+    left:-33.5px;
+    top:22px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--ink);
+    border:2px solid var(--paper);
+  }
+  .tcard.watch{border-left-color:var(--indigo);}
+  .tcard.watch::before{background:var(--indigo);}
+  .tcard.fraud{border-left-color:var(--amber);}
+  .tcard.fraud::before{background:var(--amber);}
+  .tcard.event{border-left-color:var(--terracotta);}
+  .tcard.event::before{background:var(--terracotta);}
+  .tcard.award{border-left-color:var(--teal);}
+  .tcard.award::before{background:var(--teal);}
+
+  .tcard .date{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-faint);
+    letter-spacing:0.03em;
+    margin-bottom:6px;
+  }
+  .tcard h4{
+    font-size:16.5px;
+    font-weight:700;
+    line-height:1.5;
+  }
+  .tcard .place{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .tcard .place::before{content:"📍 ";}
+  .tcard .desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:8px;
+    line-height:1.8;
+  }
+  .tcard .desc ul{margin:6px 0 0;padding-left:18px;}
+  .tcard .desc li{margin:2px 0;}
+  .tcard .tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    padding:3px 9px;
+    border-radius:20px;
+  }
+  .tcard.watch .tag{background:var(--indigo-soft);color:var(--indigo);}
+  .tcard.fraud .tag{background:var(--amber-soft);color:var(--amber);}
+  .tcard.event .tag{background:var(--terracotta-soft);color:var(--terracotta);}
+  .tcard.award .tag{background:var(--teal-soft);color:var(--teal);}
+
+  /* ===== Partners ===== */
+  .partners{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:14px;
+  }
+  .partner{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    font-size:14px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .partner .p-dot{width:8px;height:8px;border-radius:50%;background:var(--indigo);flex-shrink:0;}
+
+  /* ===== Contact ===== */
+  .contact-lead{
+    color:var(--ink-soft);
+    max-width:56ch;
+    font-size:15px;
+    line-height:1.9;
+  }
+  .contact-lead b{color:var(--ink);font-weight:700;}
+  .contact-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+    box-shadow:var(--shadow);
+    max-width:56ch;
+    margin-top:22px;
+    transition:background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  .contact-card-label{
+    font-family:'Zen Maru Gothic', sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    color:var(--indigo);
+    margin-bottom:8px;
+  }
+  .contact-card p{
+    margin:0;
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.85;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    padding:56px 0 40px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    flex-wrap:wrap;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:24px;
+  }
+  .footer-brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Zen Maru Gothic', sans-serif;
+    font-weight:700;font-size:17px;
+  }
+  .footer-note{
+    color:var(--ink-soft);
+    font-size:13.5px;
+    max-width:36ch;
+  }
+  .footer-meta{
+    color:var(--ink-faint);
+    font-size:12.5px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ===== Reveal ===== */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;gap:32px;}
+    .about-grid{grid-template-columns:1fr;}
+    .timeline-year{grid-template-columns:1fr;}
+    .year-label{position:static;display:flex;align-items:baseline;gap:10px;margin-bottom:14px;}
+    .year-label span{margin-top:0;}
+    .navlinks{
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--bg);
+      flex-direction:column;
+      gap:0;
+      border-bottom:1px solid var(--line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease;
+    }
+    .navlinks.open{max-height:280px;}
+    .navlinks a{padding:14px 28px;border-top:1px solid var(--line);}
+    .navtoggle{display:block;}
+  }
+  @media (max-width:520px){
+    .wrap{padding:0 18px;}
+    .hero{padding:56px 0 44px;}
+    .hero-badge .row{flex-wrap:wrap;gap:4px 0;}
+    .hero-badge .row b{text-align:right;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><span class="brand-mark"></span>レインボーの会</div>
+    <nav class="navlinks" id="navlinks">
+      <a href="#about">会について</a>
+      <a href="#timeline">活動記録</a>
+      <a href="#partners">連携団体</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+    <div class="theme-toggle">
+      <span class="theme-label" id="themelabel">昼</span>
+      <button class="theme-btn" id="themebtn" aria-label="昼と夜の表示を切り替える" aria-pressed="false">
+        <span class="knob">
+          <svg id="themeicon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </span>
+      </button>
+    </div>
+    <button class="navtoggle" id="navtoggle" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="stripe"></div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">香川県さぬき市｜地域防犯ボランティア</div>
+        <h1>子どもも、高齢者も、<br>まちごと見守る<span class="accent">虹</span>になる。</h1>
+        <p class="lead">レインボーの会は、登下校の見守りから特殊詐欺被害防止まで、警察・学校・学生と手を取り合いながら地域の安全・安心を支えるボランティアサークルです。</p>
+      </div>
+      <div class="hero-badge">
+        <div class="num">平成17年 4月1日</div>
+        <div class="cap">レインボーの会 設立</div>
+        <div class="div"></div>
+        <div class="row"><span>活動地域</span><b>さぬき市・高松市 ほか香川県内</b></div>
+        <div class="row"><span>主な活動</span><b>見守り・パトロール・啓発活動</b></div>
+        <div class="row"><span>連携先</span><b>香川県警察・大学・行政</b></div>
+        <div class="div"></div>
+        <div class="row status-row">
+          <span><span class="pulse-dot" aria-hidden="true"></span>在籍メンバー</span>
+          <b>135名（2025年12月現在）</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="tint">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">ABOUT US</div>
+          <h2>レインボーの会について</h2>
+        </div>
+        <p>ひとつの色ではなく、いくつもの色が重なり合って、まちの安全を支えています。</p>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p>レインボーの会は平成17年（2005年）4月1日に設立された、香川県さぬき市を拠点とするボランティアサークルです。会の名前には、子ども・高齢者・学生・警察など、立場の異なる人々が色とりどりの帯のようにつながり、地域を見守るという願いが込められています。</p>
+          <p>設立以来、志度小学校をはじめとする児童の登下校時の見守り活動を中心に、特殊詐欺被害防止の啓発キャンペーン、年末年始の特別警戒パトロール、地域のお祭りでの防犯ブース運営など、香川県・香川県警察や近隣大学と連携しながら幅広い防犯活動に取り組んできました。</p>
+          <p>令和2年度には香川県防犯活動自主企画提案事業として「地域との交流と協同による防犯活動」を実施するなど、行政と協働した取り組みも継続的に行っています。</p>
+        </div>
+        <div class="legend reveal">
+          <h3>活動カテゴリー</h3>
+          <div class="legend-item"><span class="dot watch"></span>見守り・パトロール活動</div>
+          <div class="legend-item"><span class="dot fraud"></span>特殊詐欺被害防止キャンペーン</div>
+          <div class="legend-item"><span class="dot event"></span>地域交流イベント・ブース</div>
+          <div class="legend-item"><span class="dot award"></span>研修・贈呈式・表彰</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">ACTIVITY LOG</div>
+          <h2>活動記録</h2>
+        </div>
+        <p>2020年から現在まで、実施してきた主な活動を年ごとにまとめています。</p>
+      </div>
+
+      <!-- 2020 -->
+      <div class="timeline-year">
+        <div class="year-label reveal">2020<span>令和2年</span></div>
+        <div class="year-items">
+          <div class="tcard watch reveal">
+            <div class="date">2020年10月9日（金）</div>
+            <h4>「安全・安心まちづくり旬間」全国地域安全運動 パトロール出発式</h4>
+            <div class="place">香川県庁</div>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2020年10月13日（火）14:40〜</div>
+            <h4>見守り隊出発式</h4>
+            <div class="place">志度小学校 付近</div>
+            <div class="desc">令和2年度香川県防犯活動自主企画提案事業「地域との交流と協同による防犯活動」の一環。志度小学校児童の登下校時の見守りを目的とした出発式を実施し、式終了後は児童の下校時に合わせて見守り活動を行った。</div>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2020年12月10日（木）</div>
+            <h4>年末年始の特別警戒・交通死亡事故抑止活動出発式／街頭交通監視</h4>
+            <div class="place">香川県警察本部</div>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard fraud reveal">
+            <div class="date">2020年12月20日（日）</div>
+            <h4>年末年始特別警戒「讃岐33（燦々）作戦」犯罪防止・防犯キャンペーン</h4>
+            <div class="place">フジ志度店 前</div>
+            <span class="tag">特殊詐欺被害防止</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2021 -->
+      <div class="timeline-year">
+        <div class="year-label reveal">2021<span>令和3年</span></div>
+        <div class="year-items">
+          <div class="tcard award reveal">
+            <div class="date">2021年1月8日（金）</div>
+            <h4>「源内警部」の防犯アイテム贈呈式</h4>
+            <div class="place">さぬき市役所</div>
+            <span class="tag">研修・贈呈式</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2021年10月11日（月）</div>
+            <h4>全国地域安全運動 自転車盗難被害防止キャンペーン（鍵かけキャンペーン）</h4>
+            <div class="place">正門駐輪場</div>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2021年11月27日（土）</div>
+            <h4>さぬき警察署との児童虐待防止 啓発キャンペーン</h4>
+            <div class="place">ザ・ビッグ寒川店</div>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard fraud reveal">
+            <div class="date">2021年12月15日（水）</div>
+            <h4>香川県・香川県警察合同 特殊詐欺被害防止キャンペーン</h4>
+            <div class="place">高松市丸亀町壱番街前ドーム</div>
+            <span class="tag">特殊詐欺被害防止</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2022 -->
+      <div class="timeline-year">
+        <div class="year-label reveal">2022<span>令和4年</span></div>
+        <div class="year-items">
+          <div class="tcard fraud reveal">
+            <div class="date">2022年6月4日（土）12:30〜</div>
+            <h4>特殊詐欺防止 Twitter用動画 制作</h4>
+            <div class="place">さぬき警察署（署長室・訓示室）</div>
+            <span class="tag">特殊詐欺被害防止</span>
+          </div>
+          <div class="tcard award reveal">
+            <div class="date">2022年8月2日（火）</div>
+            <h4>防犯（特殊詐欺Twitter用）動画制作に対する感謝状贈呈式</h4>
+            <span class="tag">研修・贈呈式</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2022年10月16日（日）</div>
+            <h4>高松秋のまつり 仏生山大名行列 ブース開設</h4>
+            <div class="desc">
+              実施内容
+              <ul>
+                <li>特殊詐欺被害防止メッセージ入りカード作り（子どもを撮影した写真を使い、祖父母へのメッセージカードを作成。希望者は子ども用制服を着用して撮影可）</li>
+                <li>防犯ガラス割り体験（通常のガラスと防犯ガラスを実際に割って比較）</li>
+                <li>インターネット安全利用に関するクイズ</li>
+              </ul>
+              上記イベントの運営・補助を担当。
+            </div>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard fraud reveal">
+            <div class="date">2022年12月14日（水）</div>
+            <h4>香川県・香川県警察合同 特殊詐欺被害防止キャンペーン（徳島文理ヤンボラ）</h4>
+            <span class="tag">特殊詐欺被害防止</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="timeline-year">
+        <div class="year-label reveal">2023<span>令和5年</span></div>
+        <div class="year-items">
+          <div class="tcard fraud reveal">
+            <div class="date">2023年12月14日（木）</div>
+            <h4>香川県・香川県警察合同 特殊詐欺被害防止キャンペーン（徳島文理ヤンボラ）</h4>
+            <span class="tag">特殊詐欺被害防止</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2024 -->
+      <div class="timeline-year">
+        <div class="year-label reveal">2024<span>令和6年</span></div>
+        <div class="year-items">
+          <div class="tcard fraud reveal">
+            <div class="date">2024年12月13日（金）</div>
+            <h4>香川県・香川県警察合同 特殊詐欺被害防止キャンペーン（徳島文理ヤンボラ）</h4>
+            <span class="tag">特殊詐欺被害防止</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2025 -->
+      <div class="timeline-year">
+        <div class="year-label reveal">2025<span>令和7年</span></div>
+        <div class="year-items">
+          <div class="tcard award reveal">
+            <div class="date">2025年6月28日（土）</div>
+            <h4>学生防犯ボランティア育成・研修会</h4>
+            <span class="tag">研修・贈呈式</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2025年6月28日（土）</div>
+            <h4>改正風適法施行に伴う犯罪抑止に向けた繁華街パトロール</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2025年7月2日（水）</div>
+            <h4>JR高松駅における テロ対策キャンペーン</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2025年7月7日（月）</div>
+            <h4>徳島文理大学レインボーの会×香川大学防犯パトロール隊 防犯ボランティア共同プロジェクト出発式</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2025年9月27日（土）</div>
+            <h4>徳島文理大学レインボーの会×香川大学防犯パトロール隊 共同プロジェクト活動</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2025年10月27日（月）</div>
+            <h4>防犯パトロール</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2025年11月10日（月）</div>
+            <h4>防犯パトロール</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard fraud reveal">
+            <div class="date">2025年12月12日（金）</div>
+            <h4>香川県・香川県警察合同による特殊詐欺等被害防止キャンペーン</h4>
+            <span class="tag">特殊詐欺被害防止</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2025年12月22日（月）</div>
+            <h4>防犯パトロール</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2026 -->
+      <div class="timeline-year">
+        <div class="year-label reveal">2026<span>令和8年</span></div>
+        <div class="year-items">
+          <div class="tcard award reveal">
+            <div class="date">2026年3月10日</div>
+            <h4>情報交流会</h4>
+            <span class="tag">研修・贈呈式</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年5月10日</div>
+            <h4>廣田八幡神社 清掃活動</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年5月30日</div>
+            <h4>科学教室ボランティア</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2026年7月8日</div>
+            <h4>防犯ボランティア</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年7月12日</div>
+            <h4>夏祭り協力</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard watch reveal">
+            <div class="date">2026年7月17日</div>
+            <h4>パトロール実施</h4>
+            <span class="tag">見守り・パトロール</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年8月1日〜9日</div>
+            <h4>真夏の夜の夢 運営協力</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年8月7日〜9日</div>
+            <h4>高松市案内クルー 参加</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年8月8日</div>
+            <h4>おいでまい祭り 運営スタッフ</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年11月7日</div>
+            <h4>志度祭 運営スタッフ</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+          <div class="tcard event reveal">
+            <div class="date">2026年11月8日</div>
+            <h4>志度祭 運営スタッフ</h4>
+            <span class="tag">地域交流イベント</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section id="partners" class="tint">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">PARTNERS</div>
+          <h2>連携団体</h2>
+        </div>
+        <p>行政・警察・学校・大学など、多くの団体と協力しながら活動しています。</p>
+      </div>
+      <div class="partners reveal">
+        <div class="partner"><span class="p-dot"></span>香川県</div>
+        <div class="partner"><span class="p-dot"></span>香川県警察本部</div>
+        <div class="partner"><span class="p-dot"></span>さぬき警察署</div>
+        <div class="partner"><span class="p-dot"></span>さぬき市役所</div>
+        <div class="partner"><span class="p-dot"></span>高松市役所</div>
+        <div class="partner"><span class="p-dot"></span>志度小学校</div>
+        <div class="partner"><span class="p-dot"></span>徳島文理大学</div>
+        <div class="partner"><span class="p-dot"></span>香川大学 防犯パトロール隊</div>
+        <div class="partner"><span class="p-dot"></span>香川県内 各市町村役場</div>
+        <div class="partner"><span class="p-dot"></span>香川県内 その他各種団体</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">CONTACT</div>
+          <h2>お問い合わせ</h2>
+        </div>
+      </div>
+      <p class="contact-lead">
+        当サークルへの活動へのご参加・ご協力、取材や連携のご相談などに関するお問い合わせは、大学の公式窓口である<b>徳島文理大学 高松駅キャンパス 学生支援課</b>にて一括して受け付けております。
+      </p>
+      <div class="contact-card">
+        <div class="contact-card-label">お問い合わせ窓口</div>
+        <p>徳島文理大学 高松駅キャンパス 学生支援課（※学祭ポスターおよび公式活動に関する外部からのお問い合わせ窓口となります。）</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="stripe"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="brand-mark"></span>レインボーの会</div>
+        <p class="footer-note" style="margin-top:10px;">香川県さぬき市を拠点に、平成17年から地域の見守り・防犯活動を続けるボランティアサークルです。</p>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>レインボーの会（設立：平成17年4月1日）</span>
+      <span>© Rainbow no Kai</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // day / night toggle
+  const root = document.documentElement;
+  const themebtn = document.getElementById('themebtn');
+  const themeicon = document.getElementById('themeicon');
+  const themelabel = document.getElementById('themelabel');
+  const moonPath = '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" fill="#fff" stroke="none"/>';
+  const sunPath = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+
+  function applyTheme(mode){
+    if(mode === 'dark'){
+      root.setAttribute('data-theme','dark');
+      themeicon.innerHTML = moonPath;
+      themelabel.textContent = '夜';
+      themebtn.setAttribute('aria-pressed','true');
+    } else {
+      root.removeAttribute('data-theme');
+      themeicon.innerHTML = sunPath;
+      themelabel.textContent = '昼';
+      themebtn.setAttribute('aria-pressed','false');
+    }
+  }
+
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(prefersDark ? 'dark' : 'light');
+
+  themebtn.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    applyTheme(isDark ? 'light' : 'dark');
+  });
+
+  // mobile nav toggle
+  const navtoggle = document.getElementById('navtoggle');
+  const navlinks = document.getElementById('navlinks');
+  navtoggle.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    navtoggle.setAttribute('aria-expanded', open);
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    navtoggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
